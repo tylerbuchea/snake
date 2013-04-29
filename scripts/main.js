@@ -1,9 +1,6 @@
 
-/* ---------------------------------------------------------------------------
- * Globals
- * --------------------------------------------------------------------------- */
-
-var peer = new Peer({key: 'uhnhfslw1tikke29', debug: true});
+// Globals
+var peer = new Peer({key: 'jfns7u7xj25zsemi', debug: true});
 var conn, gameLoop, totalsteps = 0, speed = 0;
 var boundry = { 
 	x: 19, 
@@ -20,7 +17,8 @@ var player = {
 	  y: 12,
 	  direction: 1,
 	  len: 1,
-	  color: 0
+	  color: 0,
+	  steps: 0
 	}, 
 	remote: {
 	  id: 0,
@@ -28,7 +26,8 @@ var player = {
 	  y: 12,
 	  direction: 1,
 	  len: 1,
-	  color: 0
+	  color: 0,
+	  steps: 0
 	}
 };
 var apples = [
@@ -42,11 +41,6 @@ var apples = [
 	{x:12, y:12}
 ];
 var currentApple = 0;
-
-
-/* ---------------------------------------------------------------------------
- * Functions
- * --------------------------------------------------------------------------- */
 
 // Show this peer's ID.
 peer.on('open', function(id){
@@ -161,15 +155,15 @@ function step () {
 	// append collisions
 	for (snake in player) {
 
-	  var space = grid( player[snake] );
+	  var space = $( $('tr')[player[snake].y] ).children('td')[player[snake].x];
 
 	  if (player[snake].x > boundry.x || player[snake].y > boundry.y || player[snake].x < 0 || player[snake].y < 0)
 	    collision.push({type: 'wall', player: snake});      
 
-	  else if ( $(space).children('.snake') )
+	  else if ( $(space).children('.snake').length )
 	    collision.push({type: 'snake', player: snake});
 
-	  else if ( $(space).children('.apple') )
+	  else if ( $(space).children('.apple').length )
 	    collision.push({type: 'apple', player: snake});
 
 	}
@@ -247,7 +241,6 @@ $(document).ready(function () {
 	//quit
 	$('#dialog .quit').on('click', 
 		function() { 
-			resetEnvironment();
 			location.hash = 'main';
 			conn.close(); 
 		});
@@ -316,6 +309,7 @@ function dialog(text) {
 // Grid Selection
 function grid(values) {
 	return $( $('tr')[values.y] ).children('td')[values.x];
+
 }
 
 // Clean Up
@@ -324,11 +318,6 @@ window.onunload = window.onbeforeunload = function (e) {
 	  peer.destroy();
 	}
 };
-
-
-/* ---------------------------------------------------------------------------
- * Third Party
- * --------------------------------------------------------------------------- */
 
 // Paul Irish Fill
 (function() {

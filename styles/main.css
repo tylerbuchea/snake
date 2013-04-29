@@ -170,7 +170,7 @@ td {
 }
 
 .apple {
-  background-image: url('images/apple.png');
+  background-image: url('../images/apple.png');
   background-size: cover;
 }
 
