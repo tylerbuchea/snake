@@ -1,0 +1,138 @@
+<!DOCTYPE HTML> 
+<html lang="en"> 
+<head>
+
+  <title>Buchea's Snake</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+  <meta http-equiv="Content-Language" content="en-us"> 
+
+  <link rel="shortcut icon" href="main/favicon.png" />
+  <link href="main.css" rel="stylesheet" type="text/css">
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script> 
+  <script type="text/javascript" src="peer.js"></script>
+  <script type="text/javascript" src="main.js"></script>
+
+</head> 
+ 
+<body> 
+
+  <!-- Host Game -->
+  <section id="host">
+
+    <a href="#main" class="btn">X</a>
+
+    <div class="wrapper">
+      <article>
+        <h1>Your Host ID:</h1>
+        <div id="pid"></div>
+      </article>
+    </div>
+
+  </section>
+
+  <!-- Join Game -->
+  <section id="join">
+
+    <a href="#main" class="btn">X</a>
+
+    <div class="wrapper">
+      <article>
+        <input type="text" id="rid" value="Friend's Host ID...">
+        <div id="connect" class="btn">connect</div>
+      </article>
+    </div>
+
+  </section>
+
+  <!-- Info -->
+  <section id="info">
+
+    <a href="#main" class="btn">X</a>
+
+    <div class="wrapper">
+      <article>
+      <u>What are the controls?</u>
+      W, A, S, D to control your snake.
+      This is meant to be a two-player clone of the classic game snake. 
+      <hr>
+      <u>Who designed this masterpiece?</u>
+      <a target="_blank" href="http://tylerbuchea.com">Tyler Buchea</a> designed this game to test out
+      HTML5's <a target="_blank" href="http://www.webrtc.org/">WebRTC</a> for peer-2-peer gaming.
+      <hr>
+      <u>What technologies are used besides WebRTC?</u>
+      I leverage <a target="_blank" href="http://peerjs.com/">PeerJS</a>, a great API, that
+      wraps the JavaScript API with easy to use nodejs like events.
+      </article>
+    </div>
+
+  </section>
+
+  <!-- Dialog -->
+  <section id="dialog">
+
+    <a href="#main" class="btn reset">Reset Game</a>
+    <a href="#main" class="btn quit">Quit</a>
+
+    <div class="wrapper">
+      <article></article>
+    </div>
+
+  </section>
+
+
+  <!-- Main -->
+  <section id="main">
+
+    <!-- Menu -->
+    <head id="menu">
+      <a href="#host" class="btn">Host Game</a>
+      <a href="#join"  class="btn">Join Game</a>
+      <a href="#info"  class="btn">?</a>
+    </head>
+
+    <!-- Wrapper -->
+    <div class="wrapper">
+
+      <!-- Game Board -->
+      <table cellspacing="0" cellpading="0">
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      </table>
+
+    </div>
+
+  </section>
+
+<!-- JavaScript -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40172506-1', 'tylerbuchea.com');
+  ga('send', 'pageview');
+
+</script>
+  
+</body> 
+</html> 
